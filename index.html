@@ -77,15 +77,17 @@
         .app-container {
             background: white;
             border-radius: 20px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            max-width: 400px;
+            max-width: 600px;
             width: 100%;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             z-index: 10;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .header {
@@ -144,6 +146,8 @@
         .profile-card {
             display: none;
             animation: fadeIn 0.5s ease-in;
+            width: 100%;
+            overflow: visible;
         }
 
         .profile-card.active {
@@ -217,6 +221,8 @@
 
         .prompt-section {
             margin-bottom: 20px;
+            width: 100%;
+            overflow: visible;
         }
 
         .prompt-question {
@@ -228,8 +234,8 @@
 
         .prompt-answer {
             color: #333;
-            font-size: 16px;
-            line-height: 1.4;
+            font-size: 15px;
+            line-height: 1.5;
             background: #f8f9fa;
             padding: 15px;
             border-radius: 12px;
@@ -238,7 +244,10 @@
             word-wrap: break-word;
             white-space: normal;
             overflow-wrap: break-word;
-            min-height: 50px;
+            min-height: 120px;
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .prompt-answer input,
@@ -246,20 +255,28 @@
             width: 100%;
             border: none;
             background: transparent;
-            font-size: 16px;
+            font-size: 15px;
             color: #333;
             outline: none;
             font-family: 'Inter', sans-serif;
             word-wrap: break-word;
-            white-space: normal;
+            white-space: pre-wrap;
             overflow-wrap: break-word;
             resize: none;
-            min-height: 20px;
+            min-height: 100px;
+            line-height: 1.5;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
         }
 
         .prompt-answer textarea {
             resize: vertical;
-            min-height: 40px;
+            min-height: 110px;
+            overflow: visible;
+            white-space: pre-wrap;
+            word-break: break-word;
+            height: auto;
         }
 
         .prompt-answer input::placeholder {
@@ -736,6 +753,62 @@
         // Initialize
         updateProfile();
         
+        // Initialize textareas with multiple attempts to ensure proper sizing
+        setTimeout(() => {
+            initializeTextareas();
+        }, 100);
+
+        setTimeout(() => {
+            initializeTextareas();
+        }, 500);
+
+        setTimeout(() => {
+            initializeTextareas();
+        }, 1000);
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            initializeTextareas();
+        });
+
+        // Also run when the page is fully loaded
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                initializeTextareas();
+            }, 200);
+        });
+        
+        // Auto-resize textarea function
+        function autoResizeTextarea(textarea) {
+            // Reset height to auto to get the actual scroll height
+            textarea.style.height = 'auto';
+            // Calculate required height
+            const scrollHeight = textarea.scrollHeight;
+            const minHeight = 110;
+            const finalHeight = Math.max(scrollHeight + 20, minHeight);
+            textarea.style.height = finalHeight + 'px';
+            
+            // Force a repaint to ensure the height is applied
+            textarea.offsetHeight;
+        }
+
+        // Function to initialize all textareas
+        function initializeTextareas() {
+            document.querySelectorAll('textarea').forEach(textarea => {
+                // Set initial height
+                textarea.style.height = '110px';
+                // Then auto-resize
+                autoResizeTextarea(textarea);
+            });
+        }
+
+        // Add event listeners for auto-resize
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                autoResizeTextarea(this);
+            });
+        });
+
         // Initialize Mahima's inputs as disabled
         const mahimaInputs = document.querySelectorAll('[data-profile="mahima"] .prompt-answer input, [data-profile="mahima"] .prompt-answer textarea');
         mahimaInputs.forEach(input => {
