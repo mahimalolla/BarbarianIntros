@@ -370,11 +370,36 @@
             z-index: 1000;
             text-align: center;
             display: none;
+            max-width: 400px;
+            width: 90%;
         }
 
         .reaction-popup.show {
             display: block;
             animation: popIn 0.3s ease-out;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 10px;
+            background: white;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .appointment-text {
+            color: #ff6b6b;
+            font-weight: 600;
+            margin: 15px 0;
+            font-size: 16px;
         }
 
         @keyframes popIn {
@@ -608,6 +633,106 @@
     <div class="reaction-popup" id="reactionPopup">
         <h3 id="reactionTitle"></h3>
         <p id="reactionMessage"></p>
+        <div class="qr-code" id="qrCode" style="display: none;">
+            <svg viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background -->
+                <rect width="21" height="21" fill="white"/>
+                
+                <!-- Top-left finder pattern -->
+                <rect x="0" y="0" width="7" height="7" fill="black"/>
+                <rect x="1" y="1" width="5" height="5" fill="white"/>
+                <rect x="2" y="2" width="3" height="3" fill="black"/>
+                
+                <!-- Top-right finder pattern -->
+                <rect x="14" y="0" width="7" height="7" fill="black"/>
+                <rect x="15" y="1" width="5" height="5" fill="white"/>
+                <rect x="16" y="2" width="3" height="3" fill="black"/>
+                
+                <!-- Bottom-left finder pattern -->
+                <rect x="0" y="14" width="7" height="7" fill="black"/>
+                <rect x="1" y="15" width="5" height="5" fill="white"/>
+                <rect x="2" y="16" width="3" height="3" fill="black"/>
+                
+                <!-- Timing patterns -->
+                <rect x="8" y="6" width="1" height="1" fill="black"/>
+                <rect x="10" y="6" width="1" height="1" fill="black"/>
+                <rect x="12" y="6" width="1" height="1" fill="black"/>
+                <rect x="6" y="8" width="1" height="1" fill="black"/>
+                <rect x="6" y="10" width="1" height="1" fill="black"/>
+                <rect x="6" y="12" width="1" height="1" fill="black"/>
+                
+                <!-- Data pattern -->
+                <rect x="8" y="0" width="1" height="1" fill="black"/>
+                <rect x="10" y="0" width="1" height="1" fill="black"/>
+                <rect x="12" y="0" width="1" height="1" fill="black"/>
+                <rect x="8" y="1" width="1" height="1" fill="black"/>
+                <rect x="11" y="1" width="1" height="1" fill="black"/>
+                <rect x="13" y="1" width="1" height="1" fill="black"/>
+                <rect x="9" y="2" width="1" height="1" fill="black"/>
+                <rect x="11" y="2" width="1" height="1" fill="black"/>
+                <rect x="13" y="2" width="1" height="1" fill="black"/>
+                
+                <!-- More data pattern -->
+                <rect x="8" y="8" width="1" height="1" fill="black"/>
+                <rect x="9" y="8" width="1" height="1" fill="black"/>
+                <rect x="11" y="8" width="1" height="1" fill="black"/>
+                <rect x="12" y="8" width="1" height="1" fill="black"/>
+                <rect x="14" y="8" width="1" height="1" fill="black"/>
+                <rect x="15" y="8" width="1" height="1" fill="black"/>
+                <rect x="16" y="8" width="1" height="1" fill="black"/>
+                <rect x="17" y="8" width="1" height="1" fill="black"/>
+                <rect x="18" y="8" width="1" height="1" fill="black"/>
+                <rect x="19" y="8" width="1" height="1" fill="black"/>
+                <rect x="20" y="8" width="1" height="1" fill="black"/>
+                
+                <!-- Bottom pattern -->
+                <rect x="8" y="14" width="1" height="1" fill="black"/>
+                <rect x="9" y="14" width="1" height="1" fill="black"/>
+                <rect x="11" y="14" width="1" height="1" fill="black"/>
+                <rect x="13" y="14" width="1" height="1" fill="black"/>
+                <rect x="15" y="14" width="1" height="1" fill="black"/>
+                <rect x="17" y="14" width="1" height="1" fill="black"/>
+                <rect x="19" y="14" width="1" height="1" fill="black"/>
+                
+                <!-- Additional data points -->
+                <rect x="8" y="9" width="1" height="1" fill="black"/>
+                <rect x="10" y="9" width="1" height="1" fill="black"/>
+                <rect x="12" y="9" width="1" height="1" fill="black"/>
+                <rect x="16" y="9" width="1" height="1" fill="black"/>
+                <rect x="18" y="9" width="1" height="1" fill="black"/>
+                <rect x="20" y="9" width="1" height="1" fill="black"/>
+                
+                <rect x="9" y="10" width="1" height="1" fill="black"/>
+                <rect x="11" y="10" width="1" height="1" fill="black"/>
+                <rect x="13" y="10" width="1" height="1" fill="black"/>
+                <rect x="15" y="10" width="1" height="1" fill="black"/>
+                <rect x="17" y="10" width="1" height="1" fill="black"/>
+                <rect x="19" y="10" width="1" height="1" fill="black"/>
+                
+                <rect x="8" y="11" width="1" height="1" fill="black"/>
+                <rect x="10" y="11" width="1" height="1" fill="black"/>
+                <rect x="14" y="11" width="1" height="1" fill="black"/>
+                <rect x="16" y="11" width="1" height="1" fill="black"/>
+                <rect x="18" y="11" width="1" height="1" fill="black"/>
+                <rect x="20" y="11" width="1" height="1" fill="black"/>
+                
+                <rect x="9" y="12" width="1" height="1" fill="black"/>
+                <rect x="11" y="12" width="1" height="1" fill="black"/>
+                <rect x="13" y="12" width="1" height="1" fill="black"/>
+                <rect x="15" y="12" width="1" height="1" fill="black"/>
+                <rect x="17" y="12" width="1" height="1" fill="black"/>
+                <rect x="19" y="12" width="1" height="1" fill="black"/>
+                
+                <rect x="8" y="13" width="1" height="1" fill="black"/>
+                <rect x="10" y="13" width="1" height="1" fill="black"/>
+                <rect x="12" y="13" width="1" height="1" fill="black"/>
+                <rect x="14" y="13" width="1" height="1" fill="black"/>
+                <rect x="16" y="13" width="1" height="1" fill="black"/>
+                <rect x="18" y="13" width="1" height="1" fill="black"/>
+                <rect x="20" y="13" width="1" height="1" fill="black"/>
+            </svg>
+        </div>
+        <p class="appointment-text" id="appointmentText" style="display: none;">📅 Scan to book a meeting with Mahima!</p>
         <button class="edit-btn" onclick="closeReaction()" style="margin-top: 20px;">Continue</button>
     </div>
 
@@ -721,12 +846,17 @@
         function reactToProfile(reaction) {
             const currentProfile = profiles[currentProfileIndex];
             const name = currentProfile.querySelector('.profile-name').textContent;
+            const isMahima = currentProfile.dataset.profile === 'mahima';
             
             let title, message;
             
             if (reaction === 'like') {
                 title = "It's a Match! 🎉";
-                message = `You and ${name} are now connected! Time to welcome them to the team properly.`;
+                if (isMahima) {
+                    message = `You and ${name} are now connected! Ready to schedule that coffee chat?`;
+                } else {
+                    message = `You and ${name} are now connected! Time to welcome them to the team properly.`;
+                }
             } else {
                 title = "Maybe Next Time 😅";
                 message = `${name} understands. Not everyone can handle this level of awesomeness.`;
@@ -734,6 +864,19 @@
             
             document.getElementById('reactionTitle').textContent = title;
             document.getElementById('reactionMessage').textContent = message;
+            
+            // Show QR code only for Mahima's profile and when liked
+            const qrCode = document.getElementById('qrCode');
+            const appointmentText = document.getElementById('appointmentText');
+            
+            if (isMahima && reaction === 'like') {
+                qrCode.style.display = 'block';
+                appointmentText.style.display = 'block';
+            } else {
+                qrCode.style.display = 'none';
+                appointmentText.style.display = 'none';
+            }
+            
             document.getElementById('overlay').classList.add('show');
             document.getElementById('reactionPopup').classList.add('show');
         }
